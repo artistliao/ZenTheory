@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <VCProjectVersion>16.0</VCProjectVersion>
+    <ProjectGuid>{69217121-685C-486E-9C55-46B87EB4CA04}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v142</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v142</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v142</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v142</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <OutDir>../bin/</OutDir>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <Optimization>Disabled</Optimization>
+    </ClCompile>
+    <Link>
+      <TargetMachine>MachineX86</TargetMachine>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Console</SubSystem>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+    </ClCompile>
+    <Link>
+      <TargetMachine>MachineX86</TargetMachine>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Console</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>../3rdparty/rapidjson/include;../3rdparty;../bsl/include;E:\othercode\grpc-1.25.0\include;E:\othercode\grpc-1.25.0\third_party\protobuf\src;./20210406_tradeapi64_se_windows;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>SPDLOG_ACTIVE_LEVEL=0;_WIN32_WINNT=0x600;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_WARNINGS;NOMINMAX;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <LanguageStandard>stdcpp14</LanguageStandard>
+    </ClCompile>
+    <Link>
+      <AdditionalLibraryDirectories>E:\othercode\grpc-1.25.0\bin\third_party\protobuf\Release;E:\othercode\grpc-1.25.0\bin\Release;E:\othercode\grpc-1.25.0\bin\third_party\boringssl\crypto\Release;E:\othercode\grpc-1.25.0\bin\third_party\boringssl\ssl\Release;E:\othercode\grpc-1.25.0\bin\third_party\cares\cares\lib\Release;E:\othercode\grpc-1.25.0\bin\third_party\zlib\Release;../bsl/lib;../bsl/bin;./20210406_tradeapi64_se_windows;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>thostmduserapi_se.lib;thosttraderapi_se.lib;libprotobuf.lib;grpc.lib;gpr.lib;grpc++.lib;crypto.lib;ssl.lib;cares.lib;address_sorting.lib;zlibstatic.lib;Ws2_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="DataCard.cpp" />
+    <ClCompile Include="Divergence.cpp" />
+    <ClCompile Include="EMA.cpp" />
+    <ClCompile Include="EncodeTransform.cpp" />
+    <ClCompile Include="NoticeHandle.cpp" />
+    <ClCompile Include="QuotationHandle.cpp" />
+    <ClCompile Include="KlineGenerate.cpp" />
+    <ClCompile Include="LineSegment.cpp" />
+    <ClCompile Include="MACD.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="Merge.cpp" />
+    <ClCompile Include="secdata_transfer.grpc.pb.cc" />
+    <ClCompile Include="secdata_transfer.pb.cc" />
+    <ClCompile Include="stdafx.cpp" />
+    <ClCompile Include="Stroke.cpp" />
+    <ClCompile Include="ThostFtdcHandle.cpp" />
+    <ClCompile Include="Trade.cpp" />
+    <ClCompile Include="TrendCentralAndType.cpp" />
+    <ClCompile Include="Typing.cpp" />
+    <ClCompile Include="Utils.cpp" />
+    <ClCompile Include="ZenSchedule.cpp" />
+    <ClCompile Include="ZenTheory.cpp" />
+    <ClCompile Include="zen_data_svr.grpc.pb.cc" />
+    <ClCompile Include="zen_data_svr.pb.cc" />
+    <ClCompile Include="zen_notice.grpc.pb.cc" />
+    <ClCompile Include="zen_notice.pb.cc" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="20210406_tradeapi64_se_windows\ThostFtdcMdApi.h" />
+    <ClInclude Include="20210406_tradeapi64_se_windows\ThostFtdcTraderApi.h" />
+    <ClInclude Include="20210406_tradeapi64_se_windows\ThostFtdcUserApiDataType.h" />
+    <ClInclude Include="20210406_tradeapi64_se_windows\ThostFtdcUserApiStruct.h" />
+    <ClInclude Include="DataCard.h" />
+    <ClInclude Include="DataStruct.h" />
+    <ClInclude Include="Divergence.h" />
+    <ClInclude Include="EMA.h" />
+    <ClInclude Include="EncodeTransform.h" />
+    <ClInclude Include="NoticeHandle.h" />
+    <ClInclude Include="QuotationHandle.h" />
+    <ClInclude Include="KlineGenerate.h" />
+    <ClInclude Include="LineSegment.h" />
+    <ClInclude Include="MACD.h" />
+    <ClInclude Include="Merge.h" />
+    <ClInclude Include="secdata_transfer.grpc.pb.h" />
+    <ClInclude Include="secdata_transfer.pb.h" />
+    <ClInclude Include="stdafx.h" />
+    <ClInclude Include="Stroke.h" />
+    <ClInclude Include="ThostFtdcHandle.h" />
+    <ClInclude Include="Trade.h" />
+    <ClInclude Include="TrendCentralAndType.h" />
+    <ClInclude Include="Typing.h" />
+    <ClInclude Include="Utils.h" />
+    <ClInclude Include="ZenSchedule.h" />
+    <ClInclude Include="ZenTheory.h" />
+    <ClInclude Include="zen_data_svr.grpc.pb.h" />
+    <ClInclude Include="zen_data_svr.pb.h" />
+    <ClInclude Include="zen_notice.grpc.pb.h" />
+    <ClInclude Include="zen_notice.pb.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="zen_data_svr.proto" />
+    <None Include="zen_notice.proto" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets" />
+</Project>
