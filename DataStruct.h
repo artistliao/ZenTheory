@@ -340,6 +340,19 @@ typedef struct _NoticeTrade {
 	char ext_info[128];
 } NoticeTrade;
 
+// Active passive
+typedef struct _MarketDataAnalysis
+{
+	int64_t tick_time;		// 索引号
+	double last_price;		// 最新价
+	//上次结算价
+	int32_t active_bid_vol;	// 
+	int32_t active_ask_vol;	// 
+	int32_t  vol;	// 
+	int32_t  turnover;	// 
+	int32_t  open_interest;	// 
+} MarketDataAnalysis;
+
 
 #endif // __DATA_STRUCT_H__
 

@@ -7,7 +7,7 @@
 
 CZenThostFtdcMdSpi::CZenThostFtdcMdSpi()
 {
-	m_mdApi = CThostFtdcMdApi::CreateFtdcMdApi(".//flow_md/", true, true);
+	m_mdApi = CThostFtdcMdApi::CreateFtdcMdApi("./flow_md/", true, true);
 	cout << "版本号为:" << m_mdApi->GetApiVersion() << endl;
 }
 
@@ -42,11 +42,11 @@ void CZenThostFtdcMdSpi::Login() {
 void CZenThostFtdcMdSpi::Subscribe() {
 
 	char** ppInstrument = new char* [50];
-	ppInstrument[0] = "rb2110";
-	ppInstrument[1] = "j2109";
-	ppInstrument[2] = "cu2107";
-	ppInstrument[3] = "IF2106";
-	ppInstrument[4] = "IC2106";
+	ppInstrument[0] = "rb2205";
+	ppInstrument[1] = "j2205";
+	ppInstrument[2] = "cu2205";
+	ppInstrument[3] = "IF2202";
+	ppInstrument[4] = "IC2202";
 	while (m_mdApi->SubscribeMarketData(ppInstrument, 5) != 0) { 
 		printf("SubscribeMarketData not success!\n");
 		Sleep(1000); 
@@ -70,6 +70,8 @@ void CZenThostFtdcMdSpi::OnRspUserLogin(CThostFtdcRspUserLoginField* pRspUserLog
 	printf("OnRspUserLogin\n");
 }
 
+ 
+
 //接收深度行情
 void CZenThostFtdcMdSpi::OnRtnDepthMarketData(CThostFtdcDepthMarketDataField* pDepthMarketData) {
 	//printf("OnRtnDepthMarketData\n");
@@ -77,8 +79,11 @@ void CZenThostFtdcMdSpi::OnRtnDepthMarketData(CThostFtdcDepthMarketDataField* pD
 	//	<< ", InstrumentID:" << pDepthMarketData->InstrumentID
 	//	<< ", LastPrice:" << pDepthMarketData->LastPrice << ", Volume:" << pDepthMarketData->Volume << ", Turnover:" << pDepthMarketData->Turnover 
 	//	<< ", UpdateTime:" << pDepthMarketData->UpdateTime << ", UpdateMillisec:" << pDepthMarketData->UpdateMillisec << endl;
-	SPDLOG_WARN("OnRtnDepthMarketData InstrumentID:{}, LastPrice:{}, UpdateTime:{}, UpdateMillisec:{}, Volume:{}, Turnover:{}", pDepthMarketData->InstrumentID, 
-		pDepthMarketData->LastPrice, pDepthMarketData->UpdateTime, pDepthMarketData->UpdateMillisec, pDepthMarketData->Volume, pDepthMarketData->Turnover);;
+	SPDLOG_WARN("OnRtnDepthMarketData InstrumentID:{}, LastPrice:{}, UpdateTime:{}, UpdateMillisec:{}, Volume:{}, Turnover:{}, \
+		BidPrice1:{}, BidVolume1:{}, BidPrice2:{}, BidVolume2:{}, AskPrice1:{}, AskVolume1:{}, AskPrice2:{}, AskVolume2:{}", pDepthMarketData->InstrumentID, 
+		pDepthMarketData->LastPrice, pDepthMarketData->UpdateTime, pDepthMarketData->UpdateMillisec, pDepthMarketData->Volume, pDepthMarketData->Turnover,
+		pDepthMarketData->BidPrice1, pDepthMarketData->BidVolume1, pDepthMarketData->BidPrice2, pDepthMarketData->BidVolume2,
+		pDepthMarketData->AskPrice1, pDepthMarketData->AskVolume1, pDepthMarketData->AskPrice2, pDepthMarketData->AskVolume2 );
 }
 
 //接收行情

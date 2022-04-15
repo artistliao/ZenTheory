@@ -37,6 +37,7 @@ void func();
 int32_t testMutex();
 int32_t testOrderId();
 int32_t TickAnalysis();
+int32_t TraditionAnalysis();
 
 // Logic and data behind the server's behavior.
 class SecdataHandleServiceImpl final : public SecdataHandle::Service {
@@ -166,7 +167,7 @@ int32_t TraditionAnalysis() {
 		string type = code_type.second;
 		SPDLOG_INFO("ReadOriginKlineDataFromDb code:{}, type:{}", code, type);
 		for (auto& period : ns->m_period_lengths) {
-			dc.ReadOriginKlineDataFromDb(type, code, period.first, 1577808000);
+			dc.ReadOriginKlineDataFromDb(type, code, period.first, 1546272000);
 		}
 	}
 
@@ -509,12 +510,12 @@ int main(int argc, char* argv[])
 		get_file_dir(dir, conf, 1024);
 		if (!get_absolute_path(conf, "../conf/ZenTheory.xml", dir))
 		{
-			//SPDLOG_ERROR("配置文件缺失，异常退出！\n");
+			SPDLOG_ERROR("配置文件缺失，异常退出！\n");
 			return 1;
 		}
 
-		//SPDLOG_DEBUG("ZenTheory debug!");
-		//SPDLOG_INFO("ZenTheory start!");
+		SPDLOG_DEBUG("ZenTheory debug!");
+		SPDLOG_INFO("ZenTheory start!");
 
 		ZenTheory* ns = ZenTheory::get_instance();
 		if (!ns->run(conf))
@@ -523,11 +524,12 @@ int main(int argc, char* argv[])
 			return 2;
 		}
 
-		TickAnalysis();
-		return 0;
+		//TraditionAnalysis();
+		//TickAnalysis();
+		//return 0;
 
-		//std::thread dataSvrThread(RunServer);  
-		//dataSvrThread.detach();
+		std::thread dataSvrThread(RunServer);  
+		dataSvrThread.detach();
 
 		std::thread realtimeHandleThread(RealtimeHandle, ns->m_trade_code_types);
 		realtimeHandleThread.detach();

@@ -20,6 +20,7 @@ namespace secdata_transfer {
 
 static const char* SecdataHandle_method_names[] = {
   "/secdata_transfer.SecdataHandle/TransferKlineData",
+  "/secdata_transfer.SecdataHandle/AskKlineData",
 };
 
 std::unique_ptr< SecdataHandle::Stub> SecdataHandle::NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options) {
@@ -30,6 +31,7 @@ std::unique_ptr< SecdataHandle::Stub> SecdataHandle::NewStub(const std::shared_p
 
 SecdataHandle::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel)
   : channel_(channel), rpcmethod_TransferKlineData_(SecdataHandle_method_names[0], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_AskKlineData_(SecdataHandle_method_names[1], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   {}
 
 ::grpc::Status SecdataHandle::Stub::TransferKlineData(::grpc::ClientContext* context, const ::secdata_transfer::KlineRequest& request, ::secdata_transfer::KlineReply* response) {
@@ -60,18 +62,58 @@ void SecdataHandle::Stub::experimental_async::TransferKlineData(::grpc::ClientCo
   return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::secdata_transfer::KlineReply>::Create(channel_.get(), cq, rpcmethod_TransferKlineData_, context, request, false);
 }
 
+::grpc::Status SecdataHandle::Stub::AskKlineData(::grpc::ClientContext* context, const ::secdata_transfer::AskKlineReq& request, ::secdata_transfer::AskKlineRsp* response) {
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_AskKlineData_, context, request, response);
+}
+
+void SecdataHandle::Stub::experimental_async::AskKlineData(::grpc::ClientContext* context, const ::secdata_transfer::AskKlineReq* request, ::secdata_transfer::AskKlineRsp* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_AskKlineData_, context, request, response, std::move(f));
+}
+
+void SecdataHandle::Stub::experimental_async::AskKlineData(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::secdata_transfer::AskKlineRsp* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_AskKlineData_, context, request, response, std::move(f));
+}
+
+void SecdataHandle::Stub::experimental_async::AskKlineData(::grpc::ClientContext* context, const ::secdata_transfer::AskKlineReq* request, ::secdata_transfer::AskKlineRsp* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_AskKlineData_, context, request, response, reactor);
+}
+
+void SecdataHandle::Stub::experimental_async::AskKlineData(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::secdata_transfer::AskKlineRsp* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_AskKlineData_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::secdata_transfer::AskKlineRsp>* SecdataHandle::Stub::AsyncAskKlineDataRaw(::grpc::ClientContext* context, const ::secdata_transfer::AskKlineReq& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::secdata_transfer::AskKlineRsp>::Create(channel_.get(), cq, rpcmethod_AskKlineData_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::secdata_transfer::AskKlineRsp>* SecdataHandle::Stub::PrepareAsyncAskKlineDataRaw(::grpc::ClientContext* context, const ::secdata_transfer::AskKlineReq& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::secdata_transfer::AskKlineRsp>::Create(channel_.get(), cq, rpcmethod_AskKlineData_, context, request, false);
+}
+
 SecdataHandle::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       SecdataHandle_method_names[0],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< SecdataHandle::Service, ::secdata_transfer::KlineRequest, ::secdata_transfer::KlineReply>(
           std::mem_fn(&SecdataHandle::Service::TransferKlineData), this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      SecdataHandle_method_names[1],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< SecdataHandle::Service, ::secdata_transfer::AskKlineReq, ::secdata_transfer::AskKlineRsp>(
+          std::mem_fn(&SecdataHandle::Service::AskKlineData), this)));
 }
 
 SecdataHandle::Service::~Service() {
 }
 
 ::grpc::Status SecdataHandle::Service::TransferKlineData(::grpc::ServerContext* context, const ::secdata_transfer::KlineRequest* request, ::secdata_transfer::KlineReply* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status SecdataHandle::Service::AskKlineData(::grpc::ServerContext* context, const ::secdata_transfer::AskKlineReq* request, ::secdata_transfer::AskKlineRsp* response) {
   (void) context;
   (void) request;
   (void) response;

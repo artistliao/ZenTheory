@@ -70,6 +70,13 @@ class SecdataHandle final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::secdata_transfer::KlineReply>> PrepareAsyncTransferKlineData(::grpc::ClientContext* context, const ::secdata_transfer::KlineRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::secdata_transfer::KlineReply>>(PrepareAsyncTransferKlineDataRaw(context, request, cq));
     }
+    virtual ::grpc::Status AskKlineData(::grpc::ClientContext* context, const ::secdata_transfer::AskKlineReq& request, ::secdata_transfer::AskKlineRsp* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::secdata_transfer::AskKlineRsp>> AsyncAskKlineData(::grpc::ClientContext* context, const ::secdata_transfer::AskKlineReq& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::secdata_transfer::AskKlineRsp>>(AsyncAskKlineDataRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::secdata_transfer::AskKlineRsp>> PrepareAsyncAskKlineData(::grpc::ClientContext* context, const ::secdata_transfer::AskKlineReq& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::secdata_transfer::AskKlineRsp>>(PrepareAsyncAskKlineDataRaw(context, request, cq));
+    }
     class experimental_async_interface {
      public:
       virtual ~experimental_async_interface() {}
@@ -78,11 +85,17 @@ class SecdataHandle final {
       virtual void TransferKlineData(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::secdata_transfer::KlineReply* response, std::function<void(::grpc::Status)>) = 0;
       virtual void TransferKlineData(::grpc::ClientContext* context, const ::secdata_transfer::KlineRequest* request, ::secdata_transfer::KlineReply* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
       virtual void TransferKlineData(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::secdata_transfer::KlineReply* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      virtual void AskKlineData(::grpc::ClientContext* context, const ::secdata_transfer::AskKlineReq* request, ::secdata_transfer::AskKlineRsp* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void AskKlineData(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::secdata_transfer::AskKlineRsp* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void AskKlineData(::grpc::ClientContext* context, const ::secdata_transfer::AskKlineReq* request, ::secdata_transfer::AskKlineRsp* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      virtual void AskKlineData(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::secdata_transfer::AskKlineRsp* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
     };
     virtual class experimental_async_interface* experimental_async() { return nullptr; }
   private:
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::secdata_transfer::KlineReply>* AsyncTransferKlineDataRaw(::grpc::ClientContext* context, const ::secdata_transfer::KlineRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::secdata_transfer::KlineReply>* PrepareAsyncTransferKlineDataRaw(::grpc::ClientContext* context, const ::secdata_transfer::KlineRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::secdata_transfer::AskKlineRsp>* AsyncAskKlineDataRaw(::grpc::ClientContext* context, const ::secdata_transfer::AskKlineReq& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::secdata_transfer::AskKlineRsp>* PrepareAsyncAskKlineDataRaw(::grpc::ClientContext* context, const ::secdata_transfer::AskKlineReq& request, ::grpc::CompletionQueue* cq) = 0;
   };
   class Stub final : public StubInterface {
    public:
@@ -94,6 +107,13 @@ class SecdataHandle final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::secdata_transfer::KlineReply>> PrepareAsyncTransferKlineData(::grpc::ClientContext* context, const ::secdata_transfer::KlineRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::secdata_transfer::KlineReply>>(PrepareAsyncTransferKlineDataRaw(context, request, cq));
     }
+    ::grpc::Status AskKlineData(::grpc::ClientContext* context, const ::secdata_transfer::AskKlineReq& request, ::secdata_transfer::AskKlineRsp* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::secdata_transfer::AskKlineRsp>> AsyncAskKlineData(::grpc::ClientContext* context, const ::secdata_transfer::AskKlineReq& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::secdata_transfer::AskKlineRsp>>(AsyncAskKlineDataRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::secdata_transfer::AskKlineRsp>> PrepareAsyncAskKlineData(::grpc::ClientContext* context, const ::secdata_transfer::AskKlineReq& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::secdata_transfer::AskKlineRsp>>(PrepareAsyncAskKlineDataRaw(context, request, cq));
+    }
     class experimental_async final :
       public StubInterface::experimental_async_interface {
      public:
@@ -101,6 +121,10 @@ class SecdataHandle final {
       void TransferKlineData(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::secdata_transfer::KlineReply* response, std::function<void(::grpc::Status)>) override;
       void TransferKlineData(::grpc::ClientContext* context, const ::secdata_transfer::KlineRequest* request, ::secdata_transfer::KlineReply* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
       void TransferKlineData(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::secdata_transfer::KlineReply* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      void AskKlineData(::grpc::ClientContext* context, const ::secdata_transfer::AskKlineReq* request, ::secdata_transfer::AskKlineRsp* response, std::function<void(::grpc::Status)>) override;
+      void AskKlineData(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::secdata_transfer::AskKlineRsp* response, std::function<void(::grpc::Status)>) override;
+      void AskKlineData(::grpc::ClientContext* context, const ::secdata_transfer::AskKlineReq* request, ::secdata_transfer::AskKlineRsp* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      void AskKlineData(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::secdata_transfer::AskKlineRsp* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
      private:
       friend class Stub;
       explicit experimental_async(Stub* stub): stub_(stub) { }
@@ -114,7 +138,10 @@ class SecdataHandle final {
     class experimental_async async_stub_{this};
     ::grpc::ClientAsyncResponseReader< ::secdata_transfer::KlineReply>* AsyncTransferKlineDataRaw(::grpc::ClientContext* context, const ::secdata_transfer::KlineRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::secdata_transfer::KlineReply>* PrepareAsyncTransferKlineDataRaw(::grpc::ClientContext* context, const ::secdata_transfer::KlineRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::secdata_transfer::AskKlineRsp>* AsyncAskKlineDataRaw(::grpc::ClientContext* context, const ::secdata_transfer::AskKlineReq& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::secdata_transfer::AskKlineRsp>* PrepareAsyncAskKlineDataRaw(::grpc::ClientContext* context, const ::secdata_transfer::AskKlineReq& request, ::grpc::CompletionQueue* cq) override;
     const ::grpc::internal::RpcMethod rpcmethod_TransferKlineData_;
+    const ::grpc::internal::RpcMethod rpcmethod_AskKlineData_;
   };
   static std::unique_ptr<Stub> NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options = ::grpc::StubOptions());
 
@@ -124,6 +151,7 @@ class SecdataHandle final {
     virtual ~Service();
     // Sends a greeting
     virtual ::grpc::Status TransferKlineData(::grpc::ServerContext* context, const ::secdata_transfer::KlineRequest* request, ::secdata_transfer::KlineReply* response);
+    virtual ::grpc::Status AskKlineData(::grpc::ServerContext* context, const ::secdata_transfer::AskKlineReq* request, ::secdata_transfer::AskKlineRsp* response);
   };
   template <class BaseClass>
   class WithAsyncMethod_TransferKlineData : public BaseClass {
@@ -145,7 +173,27 @@ class SecdataHandle final {
       ::grpc::Service::RequestAsyncUnary(0, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
-  typedef WithAsyncMethod_TransferKlineData<Service > AsyncService;
+  template <class BaseClass>
+  class WithAsyncMethod_AskKlineData : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_AskKlineData() {
+      ::grpc::Service::MarkMethodAsync(1);
+    }
+    ~WithAsyncMethod_AskKlineData() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status AskKlineData(::grpc::ServerContext* /*context*/, const ::secdata_transfer::AskKlineReq* /*request*/, ::secdata_transfer::AskKlineRsp* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestAskKlineData(::grpc::ServerContext* context, ::secdata_transfer::AskKlineReq* request, ::grpc::ServerAsyncResponseWriter< ::secdata_transfer::AskKlineRsp>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(1, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  typedef WithAsyncMethod_TransferKlineData<WithAsyncMethod_AskKlineData<Service > > AsyncService;
   template <class BaseClass>
   class ExperimentalWithCallbackMethod_TransferKlineData : public BaseClass {
    private:
@@ -177,7 +225,38 @@ class SecdataHandle final {
     }
     virtual void TransferKlineData(::grpc::ServerContext* /*context*/, const ::secdata_transfer::KlineRequest* /*request*/, ::secdata_transfer::KlineReply* /*response*/, ::grpc::experimental::ServerCallbackRpcController* controller) { controller->Finish(::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "")); }
   };
-  typedef ExperimentalWithCallbackMethod_TransferKlineData<Service > ExperimentalCallbackService;
+  template <class BaseClass>
+  class ExperimentalWithCallbackMethod_AskKlineData : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    ExperimentalWithCallbackMethod_AskKlineData() {
+      ::grpc::Service::experimental().MarkMethodCallback(1,
+        new ::grpc_impl::internal::CallbackUnaryHandler< ::secdata_transfer::AskKlineReq, ::secdata_transfer::AskKlineRsp>(
+          [this](::grpc::ServerContext* context,
+                 const ::secdata_transfer::AskKlineReq* request,
+                 ::secdata_transfer::AskKlineRsp* response,
+                 ::grpc::experimental::ServerCallbackRpcController* controller) {
+                   return this->AskKlineData(context, request, response, controller);
+                 }));
+    }
+    void SetMessageAllocatorFor_AskKlineData(
+        ::grpc::experimental::MessageAllocator< ::secdata_transfer::AskKlineReq, ::secdata_transfer::AskKlineRsp>* allocator) {
+      static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::secdata_transfer::AskKlineReq, ::secdata_transfer::AskKlineRsp>*>(
+          ::grpc::Service::experimental().GetHandler(1))
+              ->SetMessageAllocator(allocator);
+    }
+    ~ExperimentalWithCallbackMethod_AskKlineData() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status AskKlineData(::grpc::ServerContext* /*context*/, const ::secdata_transfer::AskKlineReq* /*request*/, ::secdata_transfer::AskKlineRsp* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual void AskKlineData(::grpc::ServerContext* /*context*/, const ::secdata_transfer::AskKlineReq* /*request*/, ::secdata_transfer::AskKlineRsp* /*response*/, ::grpc::experimental::ServerCallbackRpcController* controller) { controller->Finish(::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "")); }
+  };
+  typedef ExperimentalWithCallbackMethod_TransferKlineData<ExperimentalWithCallbackMethod_AskKlineData<Service > > ExperimentalCallbackService;
   template <class BaseClass>
   class WithGenericMethod_TransferKlineData : public BaseClass {
    private:
@@ -191,6 +270,23 @@ class SecdataHandle final {
     }
     // disable synchronous version of this method
     ::grpc::Status TransferKlineData(::grpc::ServerContext* /*context*/, const ::secdata_transfer::KlineRequest* /*request*/, ::secdata_transfer::KlineReply* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
+  class WithGenericMethod_AskKlineData : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_AskKlineData() {
+      ::grpc::Service::MarkMethodGeneric(1);
+    }
+    ~WithGenericMethod_AskKlineData() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status AskKlineData(::grpc::ServerContext* /*context*/, const ::secdata_transfer::AskKlineReq* /*request*/, ::secdata_transfer::AskKlineRsp* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -213,6 +309,26 @@ class SecdataHandle final {
     }
     void RequestTransferKlineData(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
       ::grpc::Service::RequestAsyncUnary(0, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithRawMethod_AskKlineData : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_AskKlineData() {
+      ::grpc::Service::MarkMethodRaw(1);
+    }
+    ~WithRawMethod_AskKlineData() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status AskKlineData(::grpc::ServerContext* /*context*/, const ::secdata_transfer::AskKlineReq* /*request*/, ::secdata_transfer::AskKlineRsp* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestAskKlineData(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(1, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -241,6 +357,31 @@ class SecdataHandle final {
     virtual void TransferKlineData(::grpc::ServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/, ::grpc::experimental::ServerCallbackRpcController* controller) { controller->Finish(::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "")); }
   };
   template <class BaseClass>
+  class ExperimentalWithRawCallbackMethod_AskKlineData : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    ExperimentalWithRawCallbackMethod_AskKlineData() {
+      ::grpc::Service::experimental().MarkMethodRawCallback(1,
+        new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+          [this](::grpc::ServerContext* context,
+                 const ::grpc::ByteBuffer* request,
+                 ::grpc::ByteBuffer* response,
+                 ::grpc::experimental::ServerCallbackRpcController* controller) {
+                   this->AskKlineData(context, request, response, controller);
+                 }));
+    }
+    ~ExperimentalWithRawCallbackMethod_AskKlineData() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status AskKlineData(::grpc::ServerContext* /*context*/, const ::secdata_transfer::AskKlineReq* /*request*/, ::secdata_transfer::AskKlineRsp* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual void AskKlineData(::grpc::ServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/, ::grpc::experimental::ServerCallbackRpcController* controller) { controller->Finish(::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "")); }
+  };
+  template <class BaseClass>
   class WithStreamedUnaryMethod_TransferKlineData : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
@@ -260,9 +401,29 @@ class SecdataHandle final {
     // replace default version of method with streamed unary
     virtual ::grpc::Status StreamedTransferKlineData(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::secdata_transfer::KlineRequest,::secdata_transfer::KlineReply>* server_unary_streamer) = 0;
   };
-  typedef WithStreamedUnaryMethod_TransferKlineData<Service > StreamedUnaryService;
+  template <class BaseClass>
+  class WithStreamedUnaryMethod_AskKlineData : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_AskKlineData() {
+      ::grpc::Service::MarkMethodStreamed(1,
+        new ::grpc::internal::StreamedUnaryHandler< ::secdata_transfer::AskKlineReq, ::secdata_transfer::AskKlineRsp>(std::bind(&WithStreamedUnaryMethod_AskKlineData<BaseClass>::StreamedAskKlineData, this, std::placeholders::_1, std::placeholders::_2)));
+    }
+    ~WithStreamedUnaryMethod_AskKlineData() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status AskKlineData(::grpc::ServerContext* /*context*/, const ::secdata_transfer::AskKlineReq* /*request*/, ::secdata_transfer::AskKlineRsp* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedAskKlineData(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::secdata_transfer::AskKlineReq,::secdata_transfer::AskKlineRsp>* server_unary_streamer) = 0;
+  };
+  typedef WithStreamedUnaryMethod_TransferKlineData<WithStreamedUnaryMethod_AskKlineData<Service > > StreamedUnaryService;
   typedef Service SplitStreamedService;
-  typedef WithStreamedUnaryMethod_TransferKlineData<Service > StreamedService;
+  typedef WithStreamedUnaryMethod_TransferKlineData<WithStreamedUnaryMethod_AskKlineData<Service > > StreamedService;
 };
 
 }  // namespace secdata_transfer

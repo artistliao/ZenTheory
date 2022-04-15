@@ -20,7 +20,7 @@
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
-    <ProjectGuid>{69217121-685C-486E-9C55-46B87EB4CA04}</ProjectGuid>
+    <ProjectGuid>{5BDEBD44-2800-4840-8AE4-93097CDE3D3D}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
@@ -103,13 +103,11 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
-      <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>../3rdparty/rapidjson/include;../3rdparty;../bsl/include;E:\othercode\grpc-1.25.0\include;E:\othercode\grpc-1.25.0\third_party\protobuf\src;./20210406_tradeapi64_se_windows;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../3rdparty/rapidjson/include;../3rdparty;../bsl/include;E:\othercode\grpc\include;E:\othercode\grpc\third_party\protobuf\src;./20210406_tradeapi64_se_windows;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>SPDLOG_ACTIVE_LEVEL=0;_WIN32_WINNT=0x600;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_WARNINGS;NOMINMAX;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <LanguageStandard>stdcpp14</LanguageStandard>
     </ClCompile>
     <Link>
-      <AdditionalLibraryDirectories>E:\othercode\grpc-1.25.0\bin\third_party\protobuf\Release;E:\othercode\grpc-1.25.0\bin\Release;E:\othercode\grpc-1.25.0\bin\third_party\boringssl\crypto\Release;E:\othercode\grpc-1.25.0\bin\third_party\boringssl\ssl\Release;E:\othercode\grpc-1.25.0\bin\third_party\cares\cares\lib\Release;E:\othercode\grpc-1.25.0\bin\third_party\zlib\Release;../bsl/lib;../bsl/bin;./20210406_tradeapi64_se_windows;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>E:\othercode\grpc\build_VS2019_x64\third_party\protobuf\Release;E:\othercode\grpc\build_VS2019_x64\Release;E:\othercode\grpc\build_VS2019_x64\third_party\boringssl\crypto\Release;E:\othercode\grpc\build_VS2019_x64\third_party\boringssl\ssl\Release;E:\othercode\grpc\build_VS2019_x64\third_party\cares\cares\lib\Release;E:\othercode\grpc\build_VS2019_x64\third_party\zlib\Release;../bsl/lib;../bsl/bin;./20210406_tradeapi64_se_windows</AdditionalLibraryDirectories>
       <AdditionalDependencies>thostmduserapi_se.lib;thosttraderapi_se.lib;libprotobuf.lib;grpc.lib;gpr.lib;grpc++.lib;crypto.lib;ssl.lib;cares.lib;address_sorting.lib;zlibstatic.lib;Ws2_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
@@ -118,13 +116,14 @@
     <ClCompile Include="Divergence.cpp" />
     <ClCompile Include="EMA.cpp" />
     <ClCompile Include="EncodeTransform.cpp" />
-    <ClCompile Include="NoticeHandle.cpp" />
-    <ClCompile Include="QuotationHandle.cpp" />
     <ClCompile Include="KlineGenerate.cpp" />
     <ClCompile Include="LineSegment.cpp" />
     <ClCompile Include="MACD.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="MarketData.cpp" />
     <ClCompile Include="Merge.cpp" />
+    <ClCompile Include="NoticeHandle.cpp" />
+    <ClCompile Include="QuotationHandle.cpp" />
     <ClCompile Include="secdata_transfer.grpc.pb.cc" />
     <ClCompile Include="secdata_transfer.pb.cc" />
     <ClCompile Include="stdafx.cpp" />
@@ -151,12 +150,13 @@
     <ClInclude Include="Divergence.h" />
     <ClInclude Include="EMA.h" />
     <ClInclude Include="EncodeTransform.h" />
-    <ClInclude Include="NoticeHandle.h" />
-    <ClInclude Include="QuotationHandle.h" />
     <ClInclude Include="KlineGenerate.h" />
     <ClInclude Include="LineSegment.h" />
     <ClInclude Include="MACD.h" />
+    <ClInclude Include="MarketData.h" />
     <ClInclude Include="Merge.h" />
+    <ClInclude Include="NoticeHandle.h" />
+    <ClInclude Include="QuotationHandle.h" />
     <ClInclude Include="secdata_transfer.grpc.pb.h" />
     <ClInclude Include="secdata_transfer.pb.h" />
     <ClInclude Include="stdafx.h" />
@@ -173,10 +173,7 @@
     <ClInclude Include="zen_notice.grpc.pb.h" />
     <ClInclude Include="zen_notice.pb.h" />
   </ItemGroup>
-  <ItemGroup>
-    <None Include="zen_data_svr.proto" />
-    <None Include="zen_notice.proto" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
-  <ImportGroup Label="ExtensionTargets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
 </Project>
