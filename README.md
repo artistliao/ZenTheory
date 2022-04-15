@@ -7,7 +7,8 @@
 	
 	E:\othercode\grpc\build_VS2019_x64\third_party\protobuf\Release\protoc.exe -I="./" --cpp_out="./"  "./secdata_transfer.proto"
 
-2、其他的依赖库和CTP库的代码比较多，分享到了阿里云盘，地址：https://www.aliyundrive.com/s/2bJgrs5ukau 提取码：8d0u
+2、其他的依赖库和CTP库的代码比较多，分享到了百度网盘，地址：链接：https://pan.baidu.com/s/1rgulk-qmbaefCFuHKSegKQ 提取码：1502 
+
 
 3、后续在readme里面详细说明一下每个文件的作用
 
