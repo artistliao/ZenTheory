@@ -7,9 +7,9 @@
 	
 	E:\othercode\grpc\build_VS2019_x64\third_party\protobuf\Release\protoc.exe -I="./" --cpp_out="./"  "./secdata_transfer.proto"
 
-2、其他依赖的第三方库和CTP库的代码比较多，分享到了百度网盘，地址：链接：https://pan.baidu.com/s/1rgulk-qmbaefCFuHKSegKQ 提取码：1502，大家可以自行下载。
+2、其他依赖的第三方库和CTP库的代码比较多，分享到了百度网盘，地址：链接：https://pan.baidu.com/s/1rgulk-qmbaefCFuHKSegKQ 提取码:`1502`，大家可以自行下载。
 
-3、数据库各表结构后续会上传相关的sql
+3、工程数据库用的是mysql，主要有三个库`gp\futures\trade`，每个库对应表结构sql文件已经上传
 
 4、每个文件的作用：<br>
 * `DataCard.h/cpp`:K线数据的读取，新K线的插入，各功能的入口函数，分型/笔/线段/走势中枢/走势类型以文本格式写入文件(主要用于历史数据的回测)<br>
