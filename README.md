@@ -12,25 +12,25 @@
 3、数据库各表结构后续会上传相关的sql
 
 4、每个文件的作用：<br>
-* DataCard.h/cpp:K线数据的读取，新K线的插入，各功能的入口函数，分型/笔/线段/走势中枢/走势类型以文本格式写入文件(主要用于历史数据的回测)<br>
-* DataStruct.h:工程主要的数据结构<br>
-* Divergence.h/cpp:背驰的处理和判断<br>
-* EMA.h/cpp:指数移动平均数据的计算<br>
-* EncodeTransform.h/cpp:GBK文件转码成UTF8文件<br>
-* LineSegment.h/cpp:根据笔数据生成线段，特征序列的处理和判断<br>
-* MACD.h/cpp:MACD的计算<br>
-* Merge.h/cpp:K线合并的处理<br>
-* NoticeHandle.h/cpp:将画图或者交易的通知转发给ZenNoticeSvr服务(在我GitHub主页的另外一个工程里，双方用grpc通信)<br>
-* QuotationHandle.h/cpp:缺失K线的检测处理，处理ZenDataSvr服务(在我GitHub主页的另外一个工程里，双方用grpc通信)发送过来的K线数据<br>
-* stdafx.h/cpp:公共库头文件集合<br>
-* Stroke.h/cpp:根据合并且分型好的K线数据，生成笔数据<br>
-* ThostFtdcXXX.h:CTP库头文件<br>
-* TrendCentralAndType.h/cpp:走势中枢和走势类型的划分<br>
-* Utils.h/cpp:基础功能函数<br>
-* zen_data_svr h/cpp:由secdata_transfer.proto生成，和ZenDataSvr服务之间通信协议和接口<br>
-* zen_notice h/cpp:由zen_notice.proto生成，和ZenNoticeSvr服务之间通信协议和接口<br>
-* ZenSchedule.h/cpp:实时数据的用缠论逻辑来处理的继承类<br>
-* ZenTheory.h/cpp:缠论主类，采用了单例模式，主要负责程序在运行过程中各种数据的存储<br>
+* `DataCard.h/cpp`:K线数据的读取，新K线的插入，各功能的入口函数，分型/笔/线段/走势中枢/走势类型以文本格式写入文件(主要用于历史数据的回测)<br>
+* `DataStruct.h`:工程主要的数据结构<br>
+* `Divergence.h/cpp`:背驰的处理和判断<br>
+* `EMA.h/cpp`:指数移动平均数据的计算<br>
+* `EncodeTransform.h/cpp`:GBK文件转码成UTF8文件<br>
+* `LineSegment.h/cpp`:根据笔数据生成线段，特征序列的处理和判断<br>
+* `MACD.h/cpp`:MACD的计算<br>
+* `Merge.h/cpp`:K线合并的处理<br>
+* `NoticeHandle.h/cpp`:将画图或者交易的通知转发给ZenNoticeSvr服务(在我GitHub主页的另外一个工程里，双方用grpc通信)<br>
+* `QuotationHandle.h/cpp`:缺失K线的检测处理，处理ZenDataSvr服务(在我GitHub主页的另外一个工程里，双方用grpc通信)发送过来的K线数据<br>
+* `stdafx.h/cpp`:公共库头文件集合<br>
+* `Stroke.h/cpp`:根据合并且分型好的K线数据，生成笔数据<br>
+* `ThostFtdcXXX.h`:CTP库头文件<br>
+* `TrendCentralAndType.h/cpp`:走势中枢和走势类型的划分<br>
+* `Utils.h/cpp`:基础功能函数<br>
+* `zen_data_svr h/cpp`:由secdata_transfer.proto生成，和ZenDataSvr服务之间通信协议和接口<br>
+* `zen_notice h/cpp`:由zen_notice.proto生成，和ZenNoticeSvr服务之间通信协议和接口<br>
+* `ZenSchedule.h/cpp`:实时数据的用缠论逻辑来处理的继承类<br>
+* `ZenTheory.h/cpp`:缠论主类，采用了单例模式，主要负责程序在运行过程中各种数据的存储<br>
 
 
 
