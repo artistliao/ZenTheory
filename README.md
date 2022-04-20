@@ -27,7 +27,7 @@
 * `ThostFtdcXXX.h`:CTP库头文件<br>
 * `TrendCentralAndType.h/cpp`:走势中枢和走势类型的划分<br>
 * `Utils.h/cpp`:基础功能函数<br>
-* `zen_data_svr h/cpp`:由secdata_transfer.proto生成，和ZenDataSvr服务之间通信协议和接口<br>
+* `zen_data_svr h/cpp`:由zen_data_svr.proto生成，和ZenDataSvr服务之间通信协议和接口<br>
 * `zen_notice h/cpp`:由zen_notice.proto生成，和ZenNoticeSvr服务之间通信协议和接口<br>
 * `ZenSchedule.h/cpp`:实时数据的用缠论逻辑来处理的继承类<br>
 * `ZenTheory.h/cpp`:缠论主类，采用了单例模式，主要负责程序在运行过程中各种数据的存储<br>
