@@ -1,7 +1,7 @@
 ﻿#ifndef __STROKE_H__
 #define __STROKE_H__
 
-//B
+//笔
 class Stroke
 {
 public:

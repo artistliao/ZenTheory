@@ -1,6 +1,7 @@
 ﻿#ifndef _ZEN_SCHEDULE_H__
 #define _ZEN_SCHEDULE_H__
 
+//缠论处理调度类
 class ZenSchedule
 {
 public:

@@ -1,7 +1,7 @@
 ﻿#ifndef __UTILS_H__
 #define __UTILS_H__
 
-
+//基础功能类
 class Utils
 {
 

@@ -1,6 +1,7 @@
 ﻿#ifndef __ENCODE_TRANSFORM_H__
 #define __ENCODE_TRANSFORM_H__
 
+//文件编码转换
 class EncodeTransform
 {
 public:

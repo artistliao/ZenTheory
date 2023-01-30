@@ -1,7 +1,7 @@
 ﻿#ifndef __EMA_H__
 #define __EMA_H__
 
-//
+// EMA（Exponential Moving Average/指数移动平均值计算）
 class EMA
 {
 public:

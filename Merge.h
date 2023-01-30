@@ -4,6 +4,7 @@
 #include "stdafx.h"
 #include "ZenTheory.h"
 
+//K线合并模板类
 template<typename T_MERGED_DATA, typename T_FOR_MERGE_DATA>
 class Merge
 {

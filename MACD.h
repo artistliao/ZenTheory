@@ -5,6 +5,7 @@
 #include "ZenTheory.h"
 #include "EMA.h"
 
+//MACD计算模板类
 template<class T_DATA>
 class MACD
 {

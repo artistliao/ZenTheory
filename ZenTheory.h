@@ -1,7 +1,7 @@
 ﻿#ifndef __ZENTHEORY_H__
 #define __ZENTHEORY_H__
 
-
+//缠论类
 class ZenTheory : public dsa_memory_pool<>
 {
 public:

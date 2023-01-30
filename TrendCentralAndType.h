@@ -4,7 +4,7 @@
 #include "stdafx.h"
 #include "ZenTheory.h"
 
-
+//走势中枢
 class TrendCentral
 {
 public:
@@ -34,6 +34,7 @@ public:
 
 };
 
+//走势类型
 class TrendType
 {
 public:

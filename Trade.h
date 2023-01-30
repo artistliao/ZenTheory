@@ -1,7 +1,7 @@
 ﻿#ifndef _TRADE_H__
 #define _TRADE_H__
 
-// 
+// 交易类
 class TradeHandle
 {
 public:

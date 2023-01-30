@@ -1,7 +1,7 @@
 ﻿#ifndef __DIVERGENCE_H__
 #define __DIVERGENCE_H__
 
-// L
+// 背驰处理类
 class Divergence
 {
 public:

@@ -80,7 +80,7 @@ using namespace std;
 
 #define TRADE_INTERVAL (7)	 
 
-
+// K线数据
 typedef struct _KlineData
 {
 	int32_t index;		//索引号
@@ -101,6 +101,7 @@ typedef struct _KlineData
 	double	ema26;
 } KlineData;
 
+// K线合并数据
 typedef struct _KlineMergeData
 {
 	int32_t index;		//索引号
@@ -118,7 +119,7 @@ typedef struct _KlineMergeData
 	double	amount;
 } KlineMergeData;
 
-//B
+// 笔
 typedef struct _StrokeData
 {
 	int32_t index;		//索引号
@@ -153,7 +154,7 @@ typedef struct _FeatureSequenceData
 	double	amount;
 } FeatureSequenceData;
 
-// L
+// 线段
 typedef struct _LineSegmentData
 {
 	int32_t index;		//索引号
@@ -170,7 +171,7 @@ typedef struct _LineSegmentData
 	double	amount;
 } LineSegmentData;
 
-// TT
+// 走势中枢
 typedef struct _TrendCentralData
 {
 	int32_t index;			//索引号
@@ -188,7 +189,7 @@ typedef struct _TrendCentralData
 	double	lowest;			//TT区段最低点
 } TrendCentralData;
 
-// TT
+// 走势类型
 typedef struct _TrendTypeData
 {
 	int32_t index;			// 索引号
@@ -203,7 +204,7 @@ typedef struct _TrendTypeData
 	double	low;
 } TrendTypeData;
 
-// securities
+// 证券品种数据
 typedef struct _Securities
 {
 	int32_t gp_id;			// id
@@ -215,7 +216,7 @@ typedef struct _Securities
 	vector<int32_t> trade_times; // 交易时间段
 } Securities;
 
-//
+// 
 typedef struct _GPKlineData
 {
 	int32_t ts;
@@ -228,14 +229,14 @@ typedef struct _GPKlineData
 	double	factor;
 } GPKlineData;
 
-//区间
+// 区间
 typedef struct _SectionIndex
 {
 	int32_t start_idx;
 	int32_t end_idx;	
 } SectionIndex;
 
-
+// 订单数据
 typedef struct _Order
 {
 	int64_t order_id;
@@ -265,6 +266,7 @@ typedef struct _Order
 	char	cover_type;
 } Order;
 
+//期货tick数据
 typedef struct _TickPrice
 {
 	int64_t tick_time;

@@ -4,6 +4,7 @@
 #include "stdafx.h"
 #include "ZenTheory.h"
 
+//分型类
 template<class T_FOR_TYPING_DATA>
 class Typing
 {

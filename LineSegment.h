@@ -1,7 +1,7 @@
 ﻿#ifndef __LINE_SEGMENT_H__
 #define __LINE_SEGMENT_H__
 
-// L
+// 线段类
 class LineSegment
 {
 public:

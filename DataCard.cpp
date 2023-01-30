@@ -21,6 +21,7 @@ DataCard::~DataCard()
 
 }
 
+//从文件中读取K线数据
 int DataCard::ReadOriginKlineDataFromFile(const string& dir) {
     SPDLOG_INFO("ReadOriginKlineDataFromFile start! dir:{}", dir);
     ZenTheory* ns = ZenTheory::get_instance();
@@ -202,6 +203,7 @@ int32_t DataCard::ReadOriginKlineDataFromDb(const string& securitiesType, const 
     return 0;
 }
 
+//读取期货tick数据
 int32_t DataCard::ReadFuturesTickData(const string& futures_name, const string& dir, vector<TickPrice*> &tickDatas) {
     SPDLOG_INFO("ReadFuturesTickData start! futures_name:{}, dir:{}", futures_name, dir);
     ZenTheory* ns = ZenTheory::get_instance();
@@ -281,6 +283,7 @@ int32_t DataCard::ReadFuturesTickData(const string& futures_name, const string& 
     return 0;
 }
 
+//插入K线数据
 int32_t DataCard::InserKlineData(const string& code, const string& period, KlineData* pNewKline) {
     if (!pNewKline) {
         SPDLOG_WARN("pNewKline is NULL!");
@@ -327,7 +330,7 @@ int32_t DataCard::InserKlineData(const string& code, const string& period, Kline
     return 0;
 }
 
-
+//从文件中读取线段数据
 int32_t DataCard::ReadLineSegmentFromFile(const string& code, const string& filePath) {
     SPDLOG_INFO("ReadLineSegmentFromFile start! filePath:{}", filePath);
     ZenTheory* ns = ZenTheory::get_instance();
@@ -526,7 +529,7 @@ int32_t DataCard::GenerateStrokeFromTyping() {
 }
 
 
-//将分B后的数据以文本格式写入文件
+//将分笔后的数据以文本格式写入文件
 int32_t DataCard::WriteStrokeData(const string& dir) {
     //SPDLOG_INFO("WriteStrokeData start!");
     ZenTheory* ns = ZenTheory::get_instance();
@@ -576,7 +579,7 @@ int32_t DataCard::WriteStrokeData(const string& dir) {
     return 0;
 }
 
-//对B数据划分L
+//对笔数据划分线段
 int32_t DataCard::GenerateLineSegmentFromStroke() {
     ZenTheory* ns = ZenTheory::get_instance();
 
@@ -609,7 +612,6 @@ int32_t DataCard::GenerateLineSegmentFromStroke() {
     SPDLOG_INFO("GenerateLineSegmentFromStroke end!");
     return 0;
 }
-
 
 //将L数据以文本格式写入文件
 int32_t DataCard::WriteLineSegment(const string& dir) {
@@ -661,7 +663,7 @@ int32_t DataCard::WriteLineSegment(const string& dir) {
     return 0;
 }
 
-//从L数据划分TT
+//从线段数据划分走势类型
 int32_t DataCard::DivideTrendCentralFromLineSegment() {
     ZenTheory* ns = ZenTheory::get_instance();
 
@@ -689,7 +691,7 @@ int32_t DataCard::DivideTrendCentralFromLineSegment() {
     return 0;
 }
 
-//从S数据划分TT
+//从笔数据划分走势类型
 int32_t DataCard::DivideTrendCentralFromStroke() {
     ZenTheory* ns = ZenTheory::get_instance();
 
@@ -717,7 +719,7 @@ int32_t DataCard::DivideTrendCentralFromStroke() {
     return 0;
 }
 
-// 从TT数据划分TT
+// 从走势类型数据划分走势中枢
 int32_t DataCard::DivideTrendTypeFromTrendCentral() {
     ZenTheory* ns = ZenTheory::get_instance();
 
@@ -751,7 +753,7 @@ int32_t DataCard::DivideTrendTypeFromTrendCentral() {
 }
 
 
-//将TT数据以文本格式写入文件
+//将走势中枢数据以文本格式写入文件
 int32_t DataCard::WriteTrendCentral(const string& dir) {
     //SPDLOG_INFO("WriteTrendCentral start!");
     ZenTheory* ns = ZenTheory::get_instance();
@@ -800,8 +802,7 @@ int32_t DataCard::WriteTrendCentral(const string& dir) {
     return 0;
 }
 
-
-//将TT数据以文本格式写入文件
+//将走势类型数据以文本格式写入文件
 int32_t DataCard::WriteTrendType(const string& dir) {
     //SPDLOG_INFO("WriteTrendType start!");
     ZenTheory* ns = ZenTheory::get_instance();
@@ -847,7 +848,6 @@ int32_t DataCard::WriteTrendType(const string& dir) {
     //SPDLOG_INFO("WriteTrendType end!");
     return 0;
 }
-
 
 //将order数据以文本格式写入文件
 int32_t DataCard::WriteOrder(const string& dir) {
